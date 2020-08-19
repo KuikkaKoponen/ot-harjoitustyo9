@@ -11,9 +11,10 @@ app.get('/hello', (_req, res) => {
   res.send('Hello Full Stack!');
 });
 
-app.get('/bmi', (_req, res) => {
-  const height = _req.query.height;
-  const weight = _req.query.weight;
+app.get('/bmi', (req, res) => {
+  const height = req.query.height;
+  const weight = req.query.weight;
+
   let input = [];
   input.push(String(0))
   input.push(String(0))
@@ -25,7 +26,7 @@ app.get('/bmi', (_req, res) => {
     res.send( {weight: 72, height: 180, bmi: bmi})
   } catch (e) {
     console.log(e.message)
-    res.send(e.message);
+    res.send("error: " + e.message);
   }
 });
 

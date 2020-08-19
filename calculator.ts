@@ -18,9 +18,13 @@ const calculator = (a: number, b: number, op : Operation) : Result => {
       throw new Error('Operation is not multiply, add or divide!');
   }
 }
-
+/*
 try {
   console.log(calculator(1, 0 , 'divide'))
 } catch (e) {
   console.log('Something went wrong, error message: ', e.message);
 }
+*/
+
+
+export default calculator

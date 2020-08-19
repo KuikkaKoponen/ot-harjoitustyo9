@@ -9,6 +9,11 @@ interface Atributes {
   text: string
 }
 
+interface Rating {
+  value: number,
+  description: string,
+}
+
 const calculateExercises = (args: Array<string>): Atributes => {
   
   if (args.length < 2) throw new Error('Not enough arguments');
@@ -21,14 +26,14 @@ const calculateExercises = (args: Array<string>): Atributes => {
       return Number(value);
     }
   })
-  
+
   const days = week.length-1;
   const trainingDays = week.filter(value => value > 0).length -1;
   const targetValue = week[0];
   const total = week.reduce((sum, day) => sum + day, 0)-targetValue;
   const averagetime = total / trainingDays;
   const targetReached = averagetime >= targetValue;
-  const result = (difference = targetValue - averagetime): any => {
+  const result = (difference = targetValue - averagetime): Rating => {
     switch(true) {
       case difference <= 0:
         return {value: 3, description: "Good week"};
@@ -58,6 +63,8 @@ const args = process.argv.slice(2); //copies arguments without two first argumen
 try {
   console.log(calculateExercises(args));
 } catch (e) {
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   console.log('Hay problemos!: ', e.message);
 }
 
