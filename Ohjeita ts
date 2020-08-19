@@ -1,0 +1,5 @@
+npm init. Jotta luodaan package.json file
+npm install --save-dev ts-node typescript // tai globaalisti npm install -g ts-node typescript
+"scripts": { "ts-node": "ts-node" }
+
+npm install --save-dev @types/node
