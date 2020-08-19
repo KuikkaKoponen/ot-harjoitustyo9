@@ -9,16 +9,16 @@ interface Atributes {
   text: string
 }
 
-const calculateExercises = (argv: Array<string>): Atributes => {
+const calculateExercises = (args: Array<string>): Atributes => {
   
-  if (argv.length < 2) throw new Error('Not enough arguments');
+  if (args.length < 2) throw new Error('Not enough arguments');
 
-  // week = poor name, means now just scanned input values
-  const week = argv.map(value => {
+  // week = poor name, means just modified args
+  const week = args.map(value => {
     if (isNaN(Number(value))) {
       throw new Error('Use only numbers');
     } else  {
-      return Number(value)
+      return Number(value);
     }
   })
   
@@ -54,9 +54,9 @@ const calculateExercises = (argv: Array<string>): Atributes => {
   return object;
 }
 
-const week = process.argv.slice(2); //copies arguments without two first
+const args = process.argv.slice(2); //copies arguments without two first arguments
 try {
-  console.log(calculateExercises(week))
+  console.log(calculateExercises(args));
 } catch (e) {
   console.log('Hay problemos!: ', e.message);
 }
