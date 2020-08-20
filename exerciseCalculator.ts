@@ -59,6 +59,8 @@ const calculateExercises = (args: Array<string>): Atributes => {
   return object;
 }
 
+/*
+
 const args = process.argv.slice(2); //copies arguments without two first arguments
 try {
   console.log(calculateExercises(args));
@@ -67,4 +69,8 @@ try {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   console.log('Hay problemos!: ', e.message);
 }
+
+*/
+
+export default calculateExercises
 

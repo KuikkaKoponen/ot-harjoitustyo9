@@ -1,7 +1,9 @@
 import express from 'express';
 const app = express();
+app.use(express.json()) /// HUOM
 
 import calculateBmi  from './bmiCalculator';
+import calculateExercises  from './exerciseCalculator';
 
 app.get('/ping', (_req, res) => {
   res.send('pong');
@@ -9,6 +11,34 @@ app.get('/ping', (_req, res) => {
 
 app.get('/hello', (_req, res) => {
   res.send('Hello Full Stack!');
+});
+
+app.get('/exercises', (req, res) => {
+  /* Request body shall have the following format
+  {
+    "daily_exercises": [1, 0, 2, 0, 3, 0, 2.5],
+    "target": 2.5
+  } 
+  */
+
+  const input = req.body;
+  console.log(input)
+  let list: Array<string> =[]
+  list.push(String(input.target))
+  console.log(list)
+  input.daily_exercises.map((day: any) => { 
+    list.push(String(day));
+    console.log(list)
+  });
+
+  try {
+    const response = calculateExercises(list)
+    console.log(response)
+    res.json(response) // lähettää jsonina
+  } catch (e) {
+    console.log(e.message)
+    res.send("error: " + e.message);
+  }
 });
 
 app.get('/bmi', (req, res) => {
